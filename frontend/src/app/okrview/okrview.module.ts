@@ -44,6 +44,7 @@ import { AvatarModule } from 'ngx-avatar';
 import { KeyResultMilestoneFormComponent } from './keyresult/key-result-form/key-result-milestone-form/key-result-milestone-form.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { AngularResizedEventModule } from 'angular-resize-event';
+import { ObjectiveFormContactComponent } from './objective/objective-form-contact/objective-form-contact.component';
 
 @NgModule({
   declarations: [
@@ -68,12 +69,14 @@ import { AngularResizedEventModule } from 'angular-resize-event';
     CommentCardComponent,
     CycleListDropdownComponent,
     KeyResultMilestoneFormComponent,
+    ObjectiveFormContactComponent,
   ],
   entryComponents: [
     CommentViewDialogComponent,
     OkrChildUnitFormComponent,
     KeyResultFormComponent,
     ObjectiveFormComponent,
+    ObjectiveFormContactComponent,
     ],
   imports: [
         CommonModule,

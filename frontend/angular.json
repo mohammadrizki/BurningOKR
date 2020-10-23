@@ -229,6 +229,128 @@
           }
         }
       }
+    },
+    "objective-form-contact": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/objective-form-contact",
+      "sourceRoot": "projects/objective-form-contact/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/objective-form-contact",
+            "index": "projects/objective-form-contact/src/index.html",
+            "main": "projects/objective-form-contact/src/main.ts",
+            "polyfills": "projects/objective-form-contact/src/polyfills.ts",
+            "tsConfig": "projects/objective-form-contact/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/objective-form-contact/src/favicon.ico",
+              "projects/objective-form-contact/src/assets"
+            ],
+            "styles": [
+              "projects/objective-form-contact/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/objective-form-contact/src/environments/environment.ts",
+                  "with": "projects/objective-form-contact/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "objective-form-contact:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "objective-form-contact:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "objective-form-contact:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/objective-form-contact/src/test.ts",
+            "polyfills": "projects/objective-form-contact/src/polyfills.ts",
+            "tsConfig": "projects/objective-form-contact/tsconfig.spec.json",
+            "karmaConfig": "projects/objective-form-contact/karma.conf.js",
+            "assets": [
+              "projects/objective-form-contact/src/favicon.ico",
+              "projects/objective-form-contact/src/assets"
+            ],
+            "styles": [
+              "projects/objective-form-contact/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/objective-form-contact/tsconfig.app.json",
+              "projects/objective-form-contact/tsconfig.spec.json",
+              "projects/objective-form-contact/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/objective-form-contact/e2e/protractor.conf.js",
+            "devServerTarget": "objective-form-contact:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "objective-form-contact:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "OKRFrontEnd"

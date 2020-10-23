@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
 import { ObjectiveScore, ObjectiveScoringService } from '../objective-scoring.service';
 import { I18n } from '@ngx-translate/i18n-polyfill';
 import { ContextRole } from '../../shared/model/ui/context-role';
+import { ObjectiveFormContactComponent } from './objective-form-contact/objective-form-contact.component';
 
 @Component({
   selector: 'app-objective',
@@ -171,6 +172,12 @@ export class ObjectiveComponent implements OnDestroy {
         )
         .subscribe(editedObjective => this.onObjectiveEdited(editedObjective as ViewObjective))
     );
+  }
+
+  createContactForm(): void {
+    this.matDialog.open(ObjectiveFormContactComponent, {
+      data: { objective: this.objective }
+    });
   }
 
   onObjectiveEdited(editedObjective: ViewObjective): void {

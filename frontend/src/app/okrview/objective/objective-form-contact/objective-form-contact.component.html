@@ -1,0 +1,35 @@
+
+    <mat-form-field class="form-whole-line">
+      <h2>Ihr Ansprechpartner: {{ this.getContactPersonName() }}</h2>
+    </mat-form-field>
+
+    <!-- senden per Microsoft Teams -->
+    <mat-form-field class="form-whole-line">
+      <a class="icon-spacer" matTooltip="Senden per Microsoft Teams" mat-icon-button
+              (click)="clickedSendViaMicrosoftTeams()">
+          <img src="assets/microsoft_office_teams_logo_icon_145726.svg">
+        <span>Microsoft Teams</span>
+      </a>
+    </mat-form-field>
+    <mat-form-field class="form-whole-line" *ngIf="sendViaMicrosoftTeams">
+      <label>
+        <textarea i18n-placeholder="@@component_objectiveForm_annotation" matInput placeholder="Ihre Nachricht *"
+                  formControlName="msTeamsDeepLinkMsg"></textarea>
+      </label>
+    </mat-form-field>
+    <mat-form-field *ngIf="sendViaMicrosoftTeams">
+      <a class="icon-spacer" matTooltip="Nachricht per Microsoft Teams senden" mat-icon-button>
+        <mat-icon>send</mat-icon>
+        <span>Senden</span>
+      </a>
+    </mat-form-field>
+
+    <!-- senden per E-Mail -->
+    <mat-form-field class="form-whole-line">
+      <a class="icon-spacer" matTooltip="Senden per E-Mail" mat-icon-button (click)="sendMsgToContactPersonMSTeams()">
+        <mat-icon>mail</mat-icon>
+        <span>E-Mail</span>
+      </a>
+    </mat-form-field>
+
+

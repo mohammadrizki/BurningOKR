@@ -83,6 +83,11 @@
 <!-- Options menu -->
 <mat-menu #optionsMenu="matMenu" xPosition="before">
   <ng-template matMenuContent let-objective="objective">
+    <button mat-menu-item (click)="createContactForm()">
+      <mat-icon>account_circle</mat-icon>
+      <span>Ansprechpartner kontaktieren</span>
+    </button>
+
     <button mat-menu-item (click)="clickedEditObjective()">
       <mat-icon>edit</mat-icon>
       <span i18n="@@component_objective_editObjective">Objective bearbeiten</span>
