@@ -16,6 +16,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.burningokr.model.activity.Trackable;
 import org.burningokr.model.okr.Objective;
+import org.burningokr.model.okr.OkrTopicDraft;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -41,4 +42,6 @@ public abstract class OkrUnit implements Trackable<Long> {
   public boolean hasObjectives() {
     return !objectives.isEmpty();
   }
+
+  public abstract OkrUnit getCopyWithoutRelations();
 }

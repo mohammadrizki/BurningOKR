@@ -2,7 +2,7 @@ import { OkrUnitId, UserId } from '../../id-types';
 import { OkrTopicDescription } from './okr-topic-description';
 
 export class OkrTopicDraft extends OkrTopicDescription {
-  parentUnitId: OkrUnitId;
+  parentUnitIds: OkrUnitId[];
   initiatorId: UserId;
   startTeam: UserId[];
   stakeholders: UserId[];
@@ -15,7 +15,7 @@ export class OkrTopicDraft extends OkrTopicDescription {
   handoverPlan: string;
 
   constructor(
-    parentUnitId: OkrUnitId,
+    parentUnitIds: OkrUnitId[],
     topicDraftId: number,
     name: string,
     initiatorId: UserId,
@@ -30,6 +30,6 @@ export class OkrTopicDraft extends OkrTopicDescription {
     handoverPlan: string) {
       super(topicDraftId, name, initiatorId, startTeam, stakeholders, acceptanceCriteria,
       contributesTo, delimitation, beginning, dependencies, resources, handoverPlan);
-      this.parentUnitId = parentUnitId;
+      this.parentUnitIds = parentUnitIds;
     }
 }

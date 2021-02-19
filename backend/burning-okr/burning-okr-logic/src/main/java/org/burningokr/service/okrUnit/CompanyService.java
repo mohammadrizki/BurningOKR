@@ -258,7 +258,7 @@ public class CompanyService {
 
     throwIfCompanyInClosedCycle(referencedOkrCompany);
 
-    topicDraft.setParentUnit(referencedOkrCompany);
+    topicDraft.getOkrParentUnits().add(referencedOkrCompany);
 
     topicDraft = okrTopicDraftRepository.save(topicDraft);
     logger.info(

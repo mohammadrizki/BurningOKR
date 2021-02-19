@@ -2,10 +2,13 @@ package org.burningokr.mapper.okr;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
+
 import lombok.RequiredArgsConstructor;
 import org.burningokr.dto.okr.OkrTopicDraftDto;
 import org.burningokr.mapper.interfaces.DataMapper;
 import org.burningokr.model.okr.OkrTopicDraft;
+import org.burningokr.model.okrUnits.OkrUnit;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -45,8 +48,11 @@ public class OkrTopicDraftMapper implements DataMapper<OkrTopicDraft, OkrTopicDr
     dto.setResources(input.getResources());
     dto.setStakeholders(input.getStakeholders());
     dto.setStartTeam(input.getStartTeam());
-    if (input.getParentUnit() != null) {
-      dto.setOkrParentUnitId(input.getParentUnit().getId());
+    if (input.getOkrParentUnits() != null) {
+      Collection<Long> okrParentUnitIds = input.getOkrParentUnits().stream()
+          .map(OkrUnit::getId)
+          .collect(Collectors.toList());
+      dto.setOkrParentUnitIds(okrParentUnitIds);
     }
 
     return dto;

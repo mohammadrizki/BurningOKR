@@ -2,10 +2,10 @@ package org.burningokr.model.okrUnits;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+
 import lombok.*;
+import org.burningokr.model.okr.OkrTopicDraft;
 
 @Entity
 @Data
@@ -20,6 +20,14 @@ public class OkrBranch extends OkrChildUnit implements OkrParentUnit {
   @Setter(AccessLevel.NONE)
   @EqualsAndHashCode.Exclude
   protected Collection<OkrChildUnit> okrChildUnits = new ArrayList<>();
+
+  @ManyToMany
+  @JoinTable(
+      name = "okr_topic_drafts_okr_unit",
+      joinColumns = @JoinColumn(name = "unit_id"),
+      inverseJoinColumns = @JoinColumn(name = "okr_topic_draft_id")
+  )
+  protected Collection<OkrTopicDraft> okrTopicDrafts = new ArrayList<>();
 
   public boolean hasDepartments() {
     return !okrChildUnits.isEmpty();

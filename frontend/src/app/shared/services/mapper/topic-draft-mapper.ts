@@ -16,7 +16,7 @@ export class TopicDraftMapper {
 
   static mapTopicDraftDto(topicDraft: OkrTopicDraftDto): OkrTopicDraft {
     return new OkrTopicDraft(
-      topicDraft.parentUnitId,
+      topicDraft.parentUnitIds,
       topicDraft.descriptionId,
       topicDraft.name,
       topicDraft.initiatorId,
@@ -37,7 +37,7 @@ export class TopicDraftMapper {
   static mapTopicDraft(topicDraft: OkrTopicDraft): OkrTopicDraftDto {
     const topicDraftDto: OkrTopicDraftDto = new OkrTopicDraftDto();
 
-    topicDraftDto.parentUnitId = topicDraft.parentUnitId;
+    topicDraftDto.parentUnitIds = topicDraft.parentUnitIds;
     topicDraftDto.name = topicDraft.name;
     topicDraftDto.initiatorId = topicDraft.initiatorId;
     topicDraftDto.startTeam = topicDraft.startTeam;

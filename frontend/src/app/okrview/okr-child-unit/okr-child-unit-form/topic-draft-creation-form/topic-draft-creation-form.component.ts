@@ -65,11 +65,11 @@ export class TopicDraftCreationFormComponent implements OnInit {
 
   createTopicDraft(topicDraft: OkrTopicDraft): void {
     if (this.formData.companyId) {
-      topicDraft.parentUnitId = this.formData.companyId;
+      topicDraft.parentUnitIds = [this.formData.companyId];
       this.dialogRef.close(this.topicDraftMapper
         .postTopicDraftForCompany$(this.formData.companyId, topicDraft));
     } else if (this.formData.unitId) {
-      topicDraft.parentUnitId = this.formData.unitId;
+      topicDraft.parentUnitIds = [this.formData.unitId];
       this.dialogRef.close(this.topicDraftMapper
         .postTopicDraftForOkrBranch$(this.formData.unitId, topicDraft));
     }

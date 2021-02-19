@@ -86,7 +86,7 @@ public class OkrUnitServiceUsers<T extends OkrChildUnit> implements OkrUnitServi
 
     throwIfCycleForDepartmentIsClosed(parentUnit);
 
-    topicDraft.setParentUnit(parentUnit);
+    topicDraft.getOkrParentUnits().add(parentUnit);
 
     topicDraft = topicDraftRepository.save(topicDraft);
     logger.info(

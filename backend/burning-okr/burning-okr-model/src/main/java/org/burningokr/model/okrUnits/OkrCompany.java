@@ -2,16 +2,14 @@ package org.burningokr.model.okrUnits;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.burningokr.model.cycles.Cycle;
 import org.burningokr.model.cycles.OkrCompanyHistory;
+import org.burningokr.model.okr.OkrTopicDraft;
 
 @Entity
 @Table(name = "okr_company")
@@ -29,6 +27,14 @@ public class OkrCompany extends OkrUnit implements OkrParentUnit {
       targetEntity = OkrChildUnit.class)
   @EqualsAndHashCode.Exclude
   private Collection<OkrChildUnit> okrChildUnits = new ArrayList<>();
+
+  @ManyToMany
+  @JoinTable(
+      name = "okr_topic_drafts_okr_unit",
+      joinColumns = @JoinColumn(name = "unit_id"),
+      inverseJoinColumns = @JoinColumn(name = "okr_topic_draft_id")
+  )
+  protected Collection<OkrTopicDraft> okrTopicDrafts = new ArrayList<>();
 
   public boolean hasDepartments() {
     return !okrChildUnits.isEmpty();
