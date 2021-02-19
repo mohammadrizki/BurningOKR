@@ -50,6 +50,8 @@ public class OkrBranch extends OkrChildUnit implements OkrParentUnit {
    *
    * <ul>
    *   <li>Name
+   *   <li>label</li>
+   *   <li>active</li>
    * </ul>
    *
    * @return a copy of the OkrBranch without relations

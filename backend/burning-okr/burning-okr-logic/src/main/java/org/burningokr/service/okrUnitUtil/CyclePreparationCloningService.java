@@ -1,13 +1,16 @@
 package org.burningokr.service.okrUnitUtil;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import lombok.RequiredArgsConstructor;
 import org.burningokr.model.cycles.Cycle;
 import org.burningokr.model.okr.Objective;
+import org.burningokr.model.okr.OkrTopicDraft;
 import org.burningokr.model.okrUnits.*;
 import org.burningokr.model.settings.UserSettings;
 import org.burningokr.repositories.okr.ObjectiveRepository;
+import org.burningokr.repositories.okr.OkrTopicDraftRepository;
 import org.burningokr.repositories.okrUnit.CompanyRepository;
 import org.burningokr.repositories.okrUnit.UnitRepository;
 import org.burningokr.repositories.settings.UserSettingsRepository;
@@ -28,6 +31,7 @@ public class CyclePreparationCloningService {
   private final UnitRepository<OkrChildUnit> subUnitRepository;
   private final ObjectiveRepository objectiveRepository;
   private final UserSettingsRepository userSettingsRepository;
+  private final OkrTopicDraftRepository okrTopicDraftRepository;
 
   public void cloneCompanyListIntoCycleForPreparation(
       Collection<OkrCompany> companiesToClone, Cycle cycleToCloneInto) {
@@ -52,6 +56,8 @@ public class CyclePreparationCloningService {
         okrCompanyToClone.getOkrChildUnits(), okrCompanyCopy);
     cloneUserSettingsFromClonedCompanyIntoOkrBranchForPreparation(
         okrCompanyToClone, okrCompanyCopy);
+    cloneOkrTopicDraftListIntoOkrUnitForPreparation(
+        okrCompanyToClone.getOkrTopicDrafts(), okrCompanyCopy);
   }
 
   private void cloneChildUnitListIntoParentUnitForPreparation(
@@ -75,7 +81,21 @@ public class CyclePreparationCloningService {
     if (okrChildUnitToClone instanceof OkrParentUnit) {
       cloneChildUnitListIntoParentUnitForPreparation(
           ((OkrParentUnit) okrChildUnitToClone).getOkrChildUnits(), copy);
+
+      cloneOkrTopicDraftListIntoOkrUnitForPreparation(
+          ((OkrParentUnit) okrChildUnitToClone).getOkrTopicDrafts(), (OkrParentUnit) copy);
     }
+  }
+
+  private void cloneOkrTopicDraftListIntoOkrUnitForPreparation(
+      Collection<OkrTopicDraft> okrTopicDrafts, OkrParentUnit unit) {
+    Collection<OkrTopicDraft> clonedTopicDraftCollection = new ArrayList<>(okrTopicDrafts);
+    clonedTopicDraftCollection.forEach(okrTopicDraft -> {
+      Collection<OkrUnit> okrParentUnits = okrTopicDraft.getOkrParentUnits();
+      okrParentUnits.add((OkrUnit) unit);
+    });
+
+    okrTopicDraftRepository.saveAll(clonedTopicDraftCollection);
   }
 
   private void cloneObjectiveListIntoOkrUnitForPreparation(
