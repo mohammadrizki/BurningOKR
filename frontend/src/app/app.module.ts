@@ -39,6 +39,7 @@ import { OAuthFrontendDetailsService } from './core/auth/services/o-auth-fronten
 import { NoMailInformationComponent } from './information/no-mail-information/no-mail-information.component';
 import { SubmittedTopicDraftsComponent } from './submitted-topic-drafts/submitted-topic-drafts.component';
 import { MatTableModule } from '@angular/material/table';
+import { SubmittedTopicDraftCardComponent } from './submitted-topic-drafts/submitted-topic-draft-card/submitted-topic-draft-card.component';
 
 // use the require method provided by webpack
 declare const require: any;
@@ -57,6 +58,7 @@ const currentLanguage: string = 'de';
     AdminUserIdsPipe,
     NoMailInformationComponent,
     SubmittedTopicDraftsComponent,
+    SubmittedTopicDraftCardComponent,
   ],
   imports: [
         AppRoutingModule,
