@@ -40,6 +40,7 @@ import { NoMailInformationComponent } from './information/no-mail-information/no
 import { SubmittedTopicDraftsComponent } from './submitted-topic-drafts/submitted-topic-drafts.component';
 import { MatTableModule } from '@angular/material/table';
 import { SubmittedTopicDraftCardComponent } from './submitted-topic-drafts/submitted-topic-draft-card/submitted-topic-draft-card.component';
+import { MatGridListModule } from "@angular/material/grid-list";
 
 // use the require method provided by webpack
 declare const require: any;
@@ -60,7 +61,7 @@ const currentLanguage: string = 'de';
     SubmittedTopicDraftsComponent,
     SubmittedTopicDraftCardComponent,
   ],
-  imports: [
+    imports: [
         AppRoutingModule,
         BrowserAnimationsModule,
         BrowserModule,
@@ -82,6 +83,7 @@ const currentLanguage: string = 'de';
         ErrorModule,
         LoggerModule.forRoot(loggerConfig),
         MatTableModule,
+        MatGridListModule,
     ],
   entryComponents: [
     DeleteDialogComponent,
