@@ -6,7 +6,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { registerLocaleData } from '@angular/common';
 import localeEn from '@angular/common/locales/en';
+import localeDe from '@angular/common/locales/de';
 import localeEnExtra from '@angular/common/locales/extra/en';
+import localeDeExtra from '@angular/common/locales/extra/de';
 import { loggerConfig } from './config-files/logger-config';
 
 import { OAuthInterceptorService } from './core/auth/services/o-auth-interceptor.service';
@@ -44,6 +46,7 @@ import { SubmittedTopicDraftActionButtonComponent } from './submitted-topic-draf
 import { SubmittedTopicDraftCardComponent } from './submitted-topic-drafts/submitted-topic-draft-card/submitted-topic-draft-card.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { SubmittedTopicDraftCardsWrapperComponent } from './submitted-topic-drafts/submitted-topic-draft-cards-wrapper/submitted-topic-draft-cards-wrapper.component';
+import { GermanDateFormatPipe } from './app/shared/pipes/german-date-format.pipe';
 
 // use the require method provided by webpack
 declare const require: any;
@@ -51,7 +54,7 @@ declare const require: any;
 // export const translations: any = require('raw-loader!../locale/messages.en.xlf');
 
 registerLocaleData(localeEn, 'en', localeEnExtra);
-registerLocaleData(localeEn, 'de', localeEnExtra);
+registerLocaleData(localeDe, 'de', localeDeExtra);
 
 const currentLanguage: string = 'de';
 
@@ -65,6 +68,7 @@ const currentLanguage: string = 'de';
     SubmittedTopicDraftCardComponent,
     SubmittedTopicDraftActionButtonComponent,
     SubmittedTopicDraftCardsWrapperComponent,
+    GermanDateFormatPipe,
   ],
   imports: [
     AppRoutingModule,
